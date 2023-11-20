@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "desafio-26-heitor-sasaki"
+version = "0.1.0"
+description = ""
+authors = ["Guilherme Machado <gui.mp8@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
