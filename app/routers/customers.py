@@ -10,9 +10,9 @@ from app.database.database import get_db
 customers_router = APIRouter()
 
 @customers_router.post("/customers", response_model=CustomersSchema)
-def add_customers(customers: CustomersSchema, db : Session = Depends(get_db)):
-    db_customers = Customers(**customers.model_dump())
-    db.add(db_customers)
+def add_data(customers: CustomersSchema, db : Session = Depends(get_db)):
+    table = Customers(**customers.model_dump())
+    db.add(table)
     db.commit()
-    db.refresh(db_customers)
-    return db_customers
+    db.refresh(table)
+    return table

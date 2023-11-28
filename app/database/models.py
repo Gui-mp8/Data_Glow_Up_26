@@ -1,5 +1,4 @@
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, DateTime, Text, Boolean, Date
-from sqlalchemy.orm import declarative_base
 
 from .database import Base
 
@@ -16,7 +15,6 @@ class Geolocation(Base):
     __mapper_args__ = {
         "primary_key": ["geolocation_zip_code_prefix"]
     }
-    # geolocation_id = Column(String(36), primary_key=True)
     geolocation_zip_code_prefix = Column(String(5))
     geolocation_lat = Column(Float)
     geolocation_lng = Column(Float)
@@ -59,7 +57,6 @@ class OrderItems(Base):
     }
     order_id = Column(String(32), ForeignKey('orders.order_id'))
     order_item_id = Column(Integer)
-    # order_item_id = Column(Integer, primary_key=True)
     product_id = Column(String(32), ForeignKey('products.product_id'))
     seller_id = Column(String(32), ForeignKey('sellers.seller_id'))
     shipping_limit_date = Column(DateTime)
@@ -71,7 +68,6 @@ class OrderPayments(Base):
     __mapper_args__ = {
         "primary_key": ["payment_sequential"]
     }
-    # payment_id = Column(Integer, primary_key=True)
     order_id = Column(String(32), ForeignKey('orders.order_id'))
     payment_sequential = Column(Integer)
     payment_type = Column(String(20))
@@ -93,7 +89,6 @@ class ProductCategoryNameTranslation(Base):
     __mapper_args__ = {
         "primary_key": ["product_category_name"]
     }
-    # product_category_name_id = Column(Integer, primary_key=True)
     product_category_name = Column(String(100))
     product_category_name_english = Column(String(100))
 
@@ -102,9 +97,10 @@ class ClosedDeals(Base):
     __mapper_args__ = {
         "primary_key": ["sdr_id"]
     }
-    # closed_deal_id = Column(Integer, primary_key=True)
-    mql_id = Column(String(32), ForeignKey('marketing_qualified_leads.mql_id'))
-    seller_id = Column(String(32), ForeignKey('sellers.seller_id'))
+    # mql_id = Column(String(32), ForeignKey('marketing_qualified_leads.mql_id'))
+    # seller_id = Column(String(32), ForeignKey('sellers.seller_id'))
+    mql_id = Column(String(32))
+    seller_id = Column(String(32))
     sdr_id = Column(String(32))
     sr_id = Column(String(32))
     won_date = Column(DateTime)

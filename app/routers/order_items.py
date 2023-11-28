@@ -3,16 +3,16 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.routers.schemas import CustomersSchema
-from app.database.models import Customers
+from app.routers.schemas import OrderItemsSchema
+from app.database.models import OrderItems
 from app.database.database import get_db
 
-customers_router = APIRouter()
+order_items_router = APIRouter()
 
-@customers_router.post("/customers", response_model=CustomersSchema)
-def add_customers(customers: CustomersSchema, db : Session = Depends(get_db)):
-    db_customers = Customers(**customers.model_dump())
-    db.add(db_customers)
+@order_items_router.post("/order_items", response_model=OrderItemsSchema)
+def add_data(order_items: OrderItemsSchema, db : Session = Depends(get_db)):
+    table = OrderItems(**order_items.model_dump())
+    db.add(table)
     db.commit()
-    db.refresh(db_customers)
-    return db_customers
+    db.refresh(table)
+    return table
