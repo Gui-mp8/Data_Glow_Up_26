@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, DateTime, Text, Boolean, Date
 from sqlalchemy.orm import declarative_base
 
-Base = declarative_base()
+from .database import Base
 
 class Customers(Base):
     __tablename__ = 'customers'

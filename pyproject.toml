@@ -11,8 +11,18 @@ sqlalchemy = "^2.0.23"
 psycopg2-binary = "^2.9.9"
 fastapi = "^0.104.1"
 uvicorn = "^0.24.0.post1"
+pytest = "^7.4.3"
+pydantic = "^2.5.2"
+taskipy = "^1.12.2"
+httpx = "^0.25.2"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.taskipy.tasks]
+
+run = "uvicorn app.main:app --reload"
+test = "pytest -v tests/"
+kill = "kill -9 $(lsof -t -i:8000)"
