@@ -13,7 +13,10 @@ class Customers(Base):
 
 class Geolocation(Base):
     __tablename__ = 'geolocation'
-    geolocation_id = Column(String(36), primary_key=True)
+    __mapper_args__ = {
+        "primary_key": ["geolocation_zip_code_prefix"]
+    }
+    # geolocation_id = Column(String(36), primary_key=True)
     geolocation_zip_code_prefix = Column(String(5))
     geolocation_lat = Column(Float)
     geolocation_lng = Column(Float)
@@ -51,8 +54,12 @@ class Sellers(Base):
 
 class OrderItems(Base):
     __tablename__ = 'order_items'
+    __mapper_args__ = {
+        "primary_key": ["order_item_id"]
+    }
     order_id = Column(String(32), ForeignKey('orders.order_id'))
-    order_item_id = Column(Integer, primary_key=True)
+    order_item_id = Column(Integer)
+    # order_item_id = Column(Integer, primary_key=True)
     product_id = Column(String(32), ForeignKey('products.product_id'))
     seller_id = Column(String(32), ForeignKey('sellers.seller_id'))
     shipping_limit_date = Column(DateTime)
@@ -61,7 +68,10 @@ class OrderItems(Base):
 
 class OrderPayments(Base):
     __tablename__ = 'order_payments'
-    payment_id = Column(Integer, primary_key=True)
+    __mapper_args__ = {
+        "primary_key": ["payment_sequential"]
+    }
+    # payment_id = Column(Integer, primary_key=True)
     order_id = Column(String(32), ForeignKey('orders.order_id'))
     payment_sequential = Column(Integer)
     payment_type = Column(String(20))
@@ -80,13 +90,19 @@ class OrderReviews(Base):
 
 class ProductCategoryNameTranslation(Base):
     __tablename__ = 'product_category_name_translation'
-    product_category_name_id = Column(Integer, primary_key=True)
+    __mapper_args__ = {
+        "primary_key": ["product_category_name"]
+    }
+    # product_category_name_id = Column(Integer, primary_key=True)
     product_category_name = Column(String(100))
     product_category_name_english = Column(String(100))
 
 class ClosedDeals(Base):
     __tablename__ = 'closed_deals'
-    closed_deal_id = Column(Integer, primary_key=True)
+    __mapper_args__ = {
+        "primary_key": ["sdr_id"]
+    }
+    # closed_deal_id = Column(Integer, primary_key=True)
     mql_id = Column(String(32), ForeignKey('marketing_qualified_leads.mql_id'))
     seller_id = Column(String(32), ForeignKey('sellers.seller_id'))
     sdr_id = Column(String(32))
