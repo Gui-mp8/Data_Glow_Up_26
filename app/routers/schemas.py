@@ -1,7 +1,7 @@
 from typing import Optional
 from datetime import datetime, date
 
-from pydantic import BaseModel, constr, validator
+from pydantic import BaseModel, constr, field_validator
 
 class CustomersSchema(BaseModel):
     customer_id: constr(min_length=32, max_length=32)
@@ -91,10 +91,10 @@ class ClosedDealsSchema(BaseModel):
 
 class MarketingQualifiedLeadsSchema(BaseModel):
     mql_id: constr(min_length=32, max_length=32)
-    first_contact_date: Optional[date] = None
+    first_contact_date: Optional[date] = datetime.now().date()
     landing_page_id: constr(min_length=32, max_length=32)
     origin: Optional[str] = None
 
-    @validator("first_contact_date", pre=True, always=True)
-    def set_default_date(cls, value):
-        return value or datetime.now().date()
+    # @field_validator("first_contact_date")
+    # def set_default_date(cls, value):
+    #     return value or datetime.now().date()
