@@ -14,7 +14,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 
 # DATABASE_URL = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 # engine = create_engine(DATABASE_URL)
-engine = create_engine("postgresql://olist:postgresql@localhost:5432/olist")
+engine = create_engine("postgresql://olist:postgresql@olist_db:5432/olist")
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 Base = declarative_base()
 
