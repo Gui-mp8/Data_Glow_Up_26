@@ -95,6 +95,8 @@ class MarketingQualifiedLeadsSchema(BaseModel):
     landing_page_id: constr(min_length=32, max_length=32)
     origin: Optional[str] = None
 
-    # @field_validator("first_contact_date")
-    # def set_default_date(cls, value):
-    #     return value or datetime.now().date()
+    @field_validator("first_contact_date")
+    def set_default_date(cls, value):
+        return value or datetime.now().date()
+
+
