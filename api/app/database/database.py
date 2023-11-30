@@ -18,6 +18,7 @@ engine = create_engine("postgresql://olist:postgresql@localhost:5432/olist")
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 Base = declarative_base()
 
+
 def get_db():
     db = SessionLocal()
     try:

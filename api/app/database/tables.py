@@ -2,7 +2,8 @@ from sqlalchemy import create_engine, Table
 
 from .models import Base
 
-class DataBase():
+
+class DataBase:
     def __init__(self) -> None:
         self._conn = None
 
