@@ -11,3 +11,6 @@ After the API and Database are setted, The Soda will check the data Quality of e
 The data quality will complement the unit tests that i've setted.
 
 Finaly the structure is finaly done. srasdr
+
+## Coisas ruins q descobri
+o ORM tem problema com foregein key quando se trata de testes
